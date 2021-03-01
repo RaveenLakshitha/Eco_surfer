@@ -7,7 +7,13 @@ const {
   deleteUser
 } = require("../controllers/users");
 
+//Include other resource routers
+const postsRouter = require("./posts");
+
 const router = express.Router();
+
+//Reroutes into other resourse routers
+router.use("/:userId/EcoPosts", postsRouter);
 
 router
   .route("/")

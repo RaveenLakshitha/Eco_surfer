@@ -9,7 +9,7 @@ dotenv.config({ path: "./config/config.env" });
 
 //Route files
 const users = require("./routes/users");
-
+const posts = require("./routes/posts");
 //Connect to Database
 connectDB();
 
@@ -24,8 +24,11 @@ if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
 
+//Mount ROuters
 app.use("/api/v1/EcoUsers", users);
+app.use("/api/v1/Ecoposts", posts);
 app.use(errorHandler);
+
 const PORT = process.env.PORT || 5000;
 
 //To run the server

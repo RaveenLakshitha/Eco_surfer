@@ -3,8 +3,43 @@
 "bio":"Student at UOR",
 "phone":"0779470237",
 "email":"raveenlw44@gmail.com",
-"Gender":"Male",
-"address":"No.78,kum,bala",
-"leaderBoardPoints":10,
-
+"gender":"Male",
+"address":"No.78,kumaragama,Balangoda",
+"leaderBoardPoints":10
+}
+{
+"name":"Chathuranga",
+"bio":"Student at UOR",
+"phone":"0771234567",
+"email":"sariya@gmail.com",
+"gender":"Male",
+"address":"No.88,bokkuwayata,pudukudirippu",
+"leaderBoardPoints":9
+}
+{
+"name":"Sudesh",
+"bio":"Student at UOR",
+"phone":"0777654321",
+"email":"silent@gmail.com",
+"gender":"Male",
+"address":"No.78,bankareuda,wellamulliwaikkal",
+"leaderBoardPoints":8
+}
+{
+"name":"Naveen",
+"bio":"Student at UOR",
+"phone":"0771357964",
+"email":"gapuwa44@gmail.com",
+"gender":"Male",
+"address":"No.98,kunuala,usbekistan",
+"leaderBoardPoints":7
+}
+{
+"name":"Dulanajana",
+"bio":"Student at UOR",
+"phone":"0779753146",
+"email":"yahapath@gmail.com",
+"gender":"Male",
+"address":"No.68,highwaygedara,tajikistan",
+"leaderBoardPoints":6
 }
