@@ -1,4 +1,4 @@
-/* const fs = require("fs");
+const fs = require("fs");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 
@@ -56,4 +56,3 @@ if (process.argv[2] === "-i") {
 } else if (process.argv[2] === "-d") {
   deleteData();
 }
- */

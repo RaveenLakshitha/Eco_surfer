@@ -1,45 +1,57 @@
 [
   {
+    "_id": "603d1191453640055875aa2f",
     "name": "Raveen",
     "bio": "Student at UOR",
     "phone": "0779470237",
     "email": "raveenlw44@gmail.com",
+    "password": "Rav123",
     "gender": "Male",
     "address": "No.78,kumaragama,Balangoda",
-    "leaderBoardPoints": 10
+    "leaderBoardPoints": 10,
+    "role": "admin"
   },
   {
+    "_id": "603d11a6453640055875aa30",
     "name": "Chathuranga",
     "bio": "Student at UOR",
     "phone": "0771234567",
     "email": "sariya@gmail.com",
+    "password": "Cha123",
     "gender": "Male",
     "address": "No.88,bokkuwayata,pudukudirippu",
     "leaderBoardPoints": 9
   },
   {
+    "_id": "603d11ab453640055875aa31",
     "name": "Sudesh",
     "bio": "Student at UOR",
     "phone": "0777654321",
     "email": "silent@gmail.com",
+    "password": "Sud123",
     "gender": "Male",
     "address": "No.78,bankareuda,wellamulliwaikkal",
-    "leaderBoardPoints": 8
+    "leaderBoardPoints": 8,
+    "posts": "6049c60e88c07031e82432cd"
   },
   {
+    "_id": "603d11b3453640055875aa32",
     "name": "Naveen",
     "bio": "Student at UOR",
     "phone": "0771357964",
     "email": "gapuwa44@gmail.com",
+    "password": "Nav123",
     "gender": "Male",
     "address": "No.98,kunuala,usbekistan",
     "leaderBoardPoints": 7
   },
   {
+    "_id": "603d11b9453640055875aa33",
     "name": "Dulanajana",
     "bio": "Student at UOR",
     "phone": "0779753146",
     "email": "yahapath@gmail.com",
+    "password": "Dul123",
     "gender": "Male",
     "address": "No.68,highwaygedara,tajikistan",
     "leaderBoardPoints": 6

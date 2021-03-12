@@ -3,6 +3,7 @@ const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const morgan = require("morgan");
 const errorHandler = require("./middleware/error");
+const cookieParser = require("cookie-parser");
 
 //Load env vars
 dotenv.config({ path: "./config/config.env" });
@@ -18,6 +19,9 @@ const app = express();
 
 //body parser
 app.use(express.json());
+
+//Cookie parser
+app.use(cookieParser());
 
 //Dev logging middleware
 if (process.env.NODE_ENV === "development") {
