@@ -35,7 +35,7 @@ exports.protect = asyncHandler(async (req, res, next) => {
   }
 });
 
-/* // Grant access to specific roles
+// Grant access to specific roles
 exports.authorize = (...roles) => {
   return async (req, res, next) => {
     req.user = await User.findOne();
@@ -50,4 +50,3 @@ exports.authorize = (...roles) => {
     next();
   };
 };
- */
