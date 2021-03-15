@@ -30,7 +30,16 @@ const userSchema = new mongoose.Schema({
     select: false
   },
   resetPasswordToken: String,
-  resetPasswordExpire: Date
+  resetPasswordExpire: Date,
+  gender: {
+    type: String,
+    required: [true, "Please select the gender"],
+    enum: ["Male", "Female"],
+    default: "Male"
+  },
+  leaderBoardPoints: {
+    type: Number
+  }
 });
 
 //Encrypt password using bycrypt
