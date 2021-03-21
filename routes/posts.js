@@ -17,8 +17,8 @@ router.get("/getPosts", protect, getPosts);
 router.post("/create", protect, createPost);
 
 //.get(getUser)
-router.put("/:id/updatePost", protect, updatePost);
-router.delete("/:id/deletePost", protect, deletePost);
-router.put("/:id/postPhotoUpload", protect, postPhotoUpload);
+router.put("/updatePost/:id", protect, updatePost);
+router.delete("/deletePost/:id", protect, deletePost);
+router.put("/postPhotoUpload/:id", protect, postPhotoUpload);
 
 module.exports = router;
