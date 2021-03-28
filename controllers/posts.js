@@ -3,6 +3,7 @@ const asyncHandler = require("../middleware/async");
 const errorResponse = require("../utils/errorResponse");
 const Post = require("../models/Posts");
 const User = require("../models/User");
+const react = require("../models/Reaction");
 
 //@desc         Get all posts
 //@route        Get /api/v1/posts
@@ -10,8 +11,24 @@ const User = require("../models/User");
 //@access       public
 
 exports.getPosts = asyncHandler(async (req, res, next) => {
-  const posts = await Post.find();
+  const posts = await Post.find().populate({
+    path: "user",
+    select: "name"
+  });
+
   res.status(200).json({ success: true, count: posts.length, data: posts });
+
+  //res.status(200).json(res.advancedResults);
+});
+
+exports.getPost = asyncHandler(async (req, res, next) => {
+  const posts = await Post.findById(req.params.id).populate({
+    path: "user",
+    select: "name"
+  });
+  res.status(200).json({ success: true, data: posts });
+
+  //res.status(200).json(res.advancedResults);
 });
 
 //@desc         Create a post
@@ -23,7 +40,7 @@ exports.createPost = asyncHandler(async (req, res, next) => {
   req.body.user = req.user.id;
 
   //Check for created posts
-  const createdPosts = await Post.findOne({ user: req.user.id });
+  //const createdPosts = await Post.findOne({ user: req.user.id });
 
   const post = await Post.create(req.body);
   res.status(201).json({ success: true, data: post });
@@ -38,7 +55,7 @@ exports.updatePost = asyncHandler(async (req, res, next) => {
 
   if (!post) {
     return next(
-      new errorResponse(`User not found with id of ${req.params.id}`, 404)
+      new errorResponse(`Post not found with id of ${req.params.id}`, 404)
     );
   }
 
@@ -46,13 +63,13 @@ exports.updatePost = asyncHandler(async (req, res, next) => {
   if (post.user.toString() !== req.user.id && req.user.role !== "admin") {
     return next(
       new errorResponse(
-        `User ${req.params.id} is not authorized to update`,
+        ` User ${req.params.id} is not authorized to update this post`,
         401
       )
     );
   }
 
-  await Post.findByIdAndUpdate(req.params.id, req.body, {
+  post = await Post.findOneAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true
   });
@@ -72,7 +89,7 @@ exports.deletePost = asyncHandler(async (req, res, next) => {
     );
   }
 
-  //user.remove();
+  //post.remove();
   res.status(200).json({ success: true, data: {} });
 });
 

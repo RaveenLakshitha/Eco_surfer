@@ -1,11 +1,12 @@
 const mongoose = require("mongoose");
+const Reaction = require("./Reaction");
 
 const postSchema = new mongoose.Schema({
   caption: {
     type: String,
     required: [true, "Please add a Caption"],
     trim: true,
-    maxlength: [50, "Name cannot be more than 50 characters"]
+    maxlength: [100, "Name cannot be more than 50 characters"]
   },
 
   createdAt: {
@@ -20,10 +21,10 @@ const postSchema = new mongoose.Schema({
     type: String,
     default: "no-photo.jpg"
   },
-  react_rating: {
+  averageRating: {
     type: Number,
-    min: [1],
-    max: [3]
+    min: [1, "Rating must be at least 1"],
+    max: [10, "Rating must can not be more than 10"]
   },
   user: {
     type: mongoose.Schema.ObjectId,
@@ -32,4 +33,4 @@ const postSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model("Post", postSchema);
+module.exports = mongoose.model("Posts", postSchema);

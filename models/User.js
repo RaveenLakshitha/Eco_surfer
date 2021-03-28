@@ -38,7 +38,7 @@ const userSchema = new mongoose.Schema(
     resetPasswordExpire: Date,
     gender: {
       type: String,
-      required: [true, "Please select the gender"],
+      required: ["Please select the gender"],
       enum: ["Male", "Female"],
       default: "Male"
     },
@@ -48,11 +48,6 @@ const userSchema = new mongoose.Schema(
     createdAt: {
       type: Date,
       default: Date.now
-    },
-    post: {
-      type: mongoose.Schema.ObjectId,
-      ref: "Posts",
-      required: true
     }
   },
   {
@@ -82,7 +77,7 @@ userSchema.methods.matchPassword = async function(enteredPassword) {
 // Cascade delete posts when a user is deleted
 userSchema.pre("remove", async function(next) {
   console.log(`Posts being removed of the user ${this._id}`);
-  await this.model(posts).deleteMany({ post: this._id });
+  await this.model("Posts").deleteMany({ user: this._id });
   next();
 });
 
