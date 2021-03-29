@@ -6,7 +6,8 @@ const {
   getMe,
   updateDetails,
   updatePassword,
-  deleteHimself
+  deleteHimself,
+  profilepicUpload
 } = require("../controllers/auth");
 
 const router = express.Router();
@@ -20,5 +21,6 @@ router.get("/logout", logout);
 router.put("/updateDetails", protect, updateDetails);
 router.put("/updatePassword", protect, updatePassword);
 router.get("/me", protect, getMe);
+router.put("/profilepicUpload", protect, profilepicUpload);
 
 module.exports = router;

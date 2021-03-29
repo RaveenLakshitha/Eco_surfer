@@ -1,6 +1,7 @@
 const errorResponse = require("../utils/errorResponse");
 const asyncHandler = require("../middleware/async");
 const User = require("../models/User");
+const path = require("path");
 
 //@desc         Create new user
 //@route        Post /api/v1/auth/register
@@ -163,4 +164,51 @@ exports.deleteHimself = asyncHandler(async (req, res, next) => {
   user.remove();
 
   res.status(200).json({ success: true, data: {} });
+});
+
+//@desc         Upload the profile pic
+//@route        Put /api/v1/
+//@access       private
+
+exports.profilepicUpload = asyncHandler(async (req, res, next) => {
+  const user = await User.findById(req.user.id);
+
+  if (!req.files) {
+    return next(new errorResponse(`Please upload a file`, 400));
+  }
+
+  const file = req.files.file;
+
+  //Make sure image is a photo
+  if (!file.mimetype.startsWith("image")) {
+    return next(new errorResponse(`Please upload an image file`, 400));
+  }
+
+  //Check file size
+
+  if (file.size > process.env.MAX_FILE_UPLOAD) {
+    return next(
+      new errorResponse(
+        `Please upload an image less than ${process.env.MAX_FILE_UPLOAD}`,
+        400
+      )
+    );
+  }
+
+  //Create custom file Name
+  file.name = `photo_${user._id}${path.parse(file.name).ext}`;
+
+  file.mv(`${process.env.FILE_UPLOAD_PATH}/${file.name}`, async err => {
+    if (err) {
+      console.error(err);
+      return next(new errorResponse(`Problem with file upload`, 500));
+    }
+
+    await User.findByIdAndUpdate(req.user.id, { profile_pic: file.name });
+
+    res.status(200).json({ success: true, data: file.name });
+  });
+
+  // console.log(file.name);
+  console.log(req.files);
 });

@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const bycrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const posts = require("./Posts");
+const slugify = require("slugify");
 
 const userSchema = new mongoose.Schema(
   {
@@ -11,6 +12,7 @@ const userSchema = new mongoose.Schema(
       trim: true,
       maxlength: [20, "Name cannot be more than 20 characters"]
     },
+    slug: String,
     bio: {
       type: String
     },
@@ -41,6 +43,10 @@ const userSchema = new mongoose.Schema(
       required: ["Please select the gender"],
       enum: ["Male", "Female"],
       default: "Male"
+    },
+    profile_pic: {
+      type: String,
+      default: "no-photo.jpg"
     },
     leaderBoardPoints: {
       type: Number
@@ -87,6 +93,13 @@ userSchema.virtual("posts", {
   localField: "_id",
   foreignField: "user",
   justOne: false
+});
+
+//Create post slug from the name
+userSchema.pre("save", function(next) {
+  this.slug = slugify(this.name, { lower: true });
+  //console.log("slugify ran", this.name);
+  next();
 });
 
 module.exports = mongoose.model("User", userSchema);

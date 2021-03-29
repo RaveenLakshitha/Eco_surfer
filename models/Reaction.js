@@ -56,11 +56,13 @@ reactSchema.statics.getAverageRating = async function(id) {
 
 //  getAveragerating after save
 reactSchema.post("save", function() {
+  console.log("Straight in Here!");
   this.constructor.getAverageRating(this.post);
 });
 
 //  getAveragerating before remove
 reactSchema.pre("remove", function() {
+  console.log("Straight out Here!");
   this.constructor.getAverageRating(this.post);
 });
 

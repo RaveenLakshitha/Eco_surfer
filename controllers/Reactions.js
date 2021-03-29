@@ -39,3 +39,48 @@ exports.addReview = asyncHandler(async (req, res, next) => {
 
   res.status(200).json({ success: true, data: react });
 });
+
+//@desc         Update a react
+//@route        Put /api/v1/posts
+//@route        Put /api/v1/users/posts/:userId
+//@access       private
+
+exports.updateReview = asyncHandler(async (req, res, next) => {
+  let react = await React.findById(req.params.id);
+
+  if (!react) {
+    return next(
+      new errorResponse(`No review with the id of ${req.params.id}`, 404)
+    );
+  }
+
+  react = await React.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+    runValidators: true
+  });
+
+  await react.save();
+
+  res.status(200).json({ success: true, data: react });
+});
+
+//@desc         Delete a react
+//@route        Delete /api/v1/posts
+//@route        Delete /api/v1/users/posts/:userId
+//@access       private
+exports.deleteReview = asyncHandler(async (req, res, next) => {
+  const react = await React.findById(req.params.id);
+
+  if (!react) {
+    return next(
+      new errorResponse(`No review with the id of ${req.params.id}`, 404)
+    );
+  }
+
+  await react.remove();
+
+  res.status(200).json({
+    success: true,
+    data: {}
+  });
+});

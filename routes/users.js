@@ -1,32 +1,24 @@
 const express = require("express");
 const {
   getUsers,
-  getLogedUser,
   getUser,
   createUser,
-  loginUser,
-  updateUser,
-  deleteUser
+  updateDetails,
+  deleteUser,
+  profilepicUpload
 } = require("../controllers/users");
 
-//Include other resource routers
-//const postsRouter = require("./posts");
-
-const router = express.Router();
+//const router = express.Router();
+const router = express.Router({ mergeParams: true });
 
 const { protect, authorize } = require("../middleware/auth");
 
-//Reroutes into other resourse routers
-//router.use("/:userId/EcoPosts", postsRouter);
+router.get("/getUsers", protect, getUsers);
+router.post("/createUser", protect, createUser);
 
-router.get("/getUsers", authorize("admin"), getUsers);
-router.get("/getLogedUser", getLogedUser);
-router.post("/createUser", createUser);
-router.post("/loginUser", loginUser);
+router.get("/getUser/:id", protect, getUser);
+router.put("/updateDetails/:id", protect, updateDetails);
+router.delete("/deleteUser/:id", protect, deleteUser);
+router.put("/profilepicUpload/:id", protect, profilepicUpload);
 
-router
-  .route("/:id")
-  .get(getUser)
-  .put(updateUser)
-  .delete(deleteUser);
 module.exports = router;

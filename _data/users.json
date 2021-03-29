@@ -20,7 +20,8 @@
     "password": "Cha123",
     "gender": "Male",
     "address": "No.88,bokkuwayata,pudukudirippu",
-    "leaderBoardPoints": 9
+    "leaderBoardPoints": 9,
+    "role": "user"
   },
   {
     "_id": "603d11ab453640055875aa31",
@@ -32,7 +33,8 @@
     "gender": "Male",
     "address": "No.78,bankareuda,wellamulliwaikkal",
     "leaderBoardPoints": 8,
-    "posts": "6049c60e88c07031e82432cd"
+    "posts": "6049c60e88c07031e82432cd",
+    "role": "user"
   },
   {
     "_id": "603d11b3453640055875aa32",
@@ -43,7 +45,8 @@
     "password": "Nav123",
     "gender": "Male",
     "address": "No.98,kunuala,usbekistan",
-    "leaderBoardPoints": 7
+    "leaderBoardPoints": 7,
+    "role": "user"
   },
   {
     "_id": "603d11b9453640055875aa33",
@@ -54,6 +57,7 @@
     "password": "Dul123",
     "gender": "Male",
     "address": "No.68,highwaygedara,tajikistan",
-    "leaderBoardPoints": 6
+    "leaderBoardPoints": 6,
+    "role": "user"
   }
 ]
