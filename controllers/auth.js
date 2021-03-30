@@ -8,14 +8,29 @@ const path = require("path");
 //@access       public
 
 exports.register = asyncHandler(async (req, res, next) => {
-  const { name, email, password, role } = req.body;
+  const {
+    name,
+    bio,
+    phone,
+    email,
+    password,
+    gender,
+    address,
+    role,
+    leaderBoardPoints
+  } = req.body;
 
   //Create user
   const user = await User.create({
     name,
+    bio,
+    phone,
     email,
     password,
-    role
+    gender,
+    address,
+    role,
+    leaderBoardPoints
   });
 
   sendTokenResponse(user, 200, res);

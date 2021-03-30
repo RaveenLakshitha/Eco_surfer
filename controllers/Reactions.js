@@ -21,8 +21,9 @@ exports.getReviews = asyncHandler(async (req, res, next) => {
 exports.getReview = asyncHandler(async (req, res, next) => {
   req.body.post = req.params.id;
   req.body.user = req.user.id;
+  console.log(req.body);
 
-  const reacts = await React.find(req.body).populate();
+  const reacts = await React.find(req.body).populate("post");
   res.status(200).json({ success: true, data: reacts });
 });
 
